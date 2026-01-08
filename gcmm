@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# gcmm: checks out the current default working branch
+
+# Checkout default branch (dynamically determined from remote)
+gcmm() {
+  # Always refresh the remote HEAD to get current main branch
+  git remote set-head origin --auto > /dev/null 2>&1
+
+  local main_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+
+  if [[ -n "$main_branch" ]]; then
+    echo "Checking out default branch: $main_branch"
+    git checkout "$main_branch"
+  else
+    echo "Could not determine default branch"
+    return 1
+  fi
+}
+
+gcmm
