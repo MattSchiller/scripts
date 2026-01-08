@@ -11,7 +11,7 @@
 # s r 1 3   => reverts files 1 and 3; git restore
 
 if [ $# -eq 0 ]; then
-    git status --short | nl
+    git -c color.status=always status --short | nl
 elif [ "$1" == 'u' ]; then
     shift
 
@@ -31,7 +31,7 @@ elif [ "$1" == 'u' ]; then
     fi
 
     echo ""
-    git status --short | nl
+    git -c color.status=always status --short | nl
 elif [ "$1" == 'r' ]; then
     shift
 
@@ -53,7 +53,7 @@ elif [ "$1" == 'r' ]; then
     fi
 
     echo ""
-    git status --short | nl
+    git -c color.status=always status --short | nl
 elif [ "$1" == 'c' ]; then
     if [ $# -eq 2 ]; then
         git commit -m "$2"
@@ -82,5 +82,5 @@ else
     fi
 
     echo ""
-    git status --short | nl
+    git -c color.status=always status --short | nl
 fi
