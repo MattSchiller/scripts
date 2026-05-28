@@ -1,0 +1,5 @@
+#!/bin/zsh
+# Keep the display and system awake for N minutes (default: 60).
+minutes=${1:-60}
+caffeinate -disu -t $(( minutes * 60 )) &
+echo "Staying awake for ${minutes} minutes (PID $!)"
